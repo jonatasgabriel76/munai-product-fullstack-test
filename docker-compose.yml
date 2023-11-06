@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  back:
+    build: ./munai-chat-back
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+
+  front:
+    depends_on:
+      - back
+    build:
+      context: ./munai-chat-front
+    ports:
+      - "80:80"
